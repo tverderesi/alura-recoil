@@ -1,15 +1,13 @@
-import React from 'react';
-import { IEvento } from '../../../interfaces/IEvento';
+import React from "react";
+import { IEvento } from "../../../interfaces/IEvento";
+import useEventoCheckbox from "../../../hooks/useEventoCheckbox";
 
-const EventoCheckbox: React.FC<{ evento: IEvento, aoAlterarStatus: (id: number) => void }> = ({ evento, aoAlterarStatus }) => {
-  
-  const estilos = [
-    'far',
-    'fa-2x',
-    evento.completo ? 'fa-check-square' : 'fa-square'
-  ]
+const EventoCheckbox: React.FC<{ evento: IEvento }> = ({ evento }) => {
+  const { handleClick, completo } = useEventoCheckbox(evento);
 
-  return (<i className={estilos.join(' ')} onClick={() => aoAlterarStatus(evento.id!)}></i>)
-}
+  const estilos = ["far", "fa-2x", completo ? "fa-check-square" : "fa-square"];
 
-export default EventoCheckbox
+  return <i className={estilos.join(" ")} onClick={handleClick}></i>;
+};
+
+export default EventoCheckbox;

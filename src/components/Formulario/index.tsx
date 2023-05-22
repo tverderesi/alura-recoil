@@ -1,88 +1,108 @@
-import React, { useState } from 'react';
-import { IEvento } from '../../interfaces/IEvento';
-import style from './Formulario.module.scss';
+import { useState } from "react";
+import style from "./Formulario.module.scss";
+import { obterId } from "../../utils/counter";
+import { useAdicionarEvento } from "../../hooks/useAdicionarEvento";
 
-const Formulario: React.FC<{ aoSalvar: (evento: IEvento) => void }> = ({ aoSalvar }) => {
-  const [descricao, setDescricao] = useState('')
-  const [dataInicio, setDataInicio] = useState('')
-  const [horaInicio, setHoraInicio] = useState('')
-  const [dataFim, setDataFim] = useState('')
-  const [horaFim, setHoraFim] = useState('')
+const Formulario: React.FC = () => {
+  const adicionarEvento = useAdicionarEvento();
 
-  const montarData = (data:string, hora: string) => {
-    const dataString = data.slice(0, 10)
-    return new Date(`${dataString}T${hora}`)
-  }
+  const [state, setState] = useState({
+    descricao: "",
+    dataInicio: "",
+    horaInicio: "",
+    dataFim: "",
+    horaFim: "",
+  });
+
+  const { descricao, dataInicio, horaInicio, dataFim, horaFim } = state;
+
+  const handleFormChange = (e) =>
+    setState({ ...state, [e.target.name]: e.target.value });
+
+  const montarData = (data: string, hora: string) => {
+    const dataString = data.slice(0, 10);
+    return new Date(`${dataString}T${hora}`);
+  };
 
   const submeterForm = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    aoSalvar({
+    event.preventDefault();
+    const evento = {
+      id: obterId(),
       descricao,
       inicio: montarData(dataInicio, horaInicio),
       fim: montarData(dataFim, horaFim),
-      completo: false
-    })
-    setDescricao('')
-    setDataInicio('')
-    setHoraInicio('')
-    setDataFim('')
-    setHoraFim('')
-  }
-  return (<form className={style.Formulario} onSubmit={submeterForm}>
-    <h3 className={style.titulo}>Novo evento</h3>
+      completo: false,
+    };
 
-    <label>Descrição</label>
-    <input 
-      type="text" 
-      name="descricao"
-      id="descricao"
-      className={style.input}
-      onChange={evento => setDescricao(evento.target.value)} 
-      placeholder="Descrição" value={descricao} 
-      autoComplete="off"
-      required />
+    adicionarEvento(evento);
+    setState({
+      descricao: "",
+      dataInicio: "",
+      horaInicio: "",
+      dataFim: "",
+      horaFim: "",
+    });
+  };
+  return (
+    <form className={style.Formulario} onSubmit={submeterForm}>
+      <h3 className={style.titulo}>Novo evento</h3>
+
+      <label>Descrição</label>
+      <input
+        type="text"
+        name="descricao"
+        id="descricao"
+        className={style.input}
+        onChange={handleFormChange}
+        placeholder="Descrição"
+        value={descricao}
+        autoComplete="off"
+        required
+      />
 
       <label>Data de início</label>
       <div className={style.inputContainer}>
-        <input 
-          type="date" 
+        <input
+          type="date"
           name="dataInicio"
           className={style.input}
-          onChange={evento => setDataInicio(evento.target.value)} 
+          onChange={handleFormChange}
           value={dataInicio}
-          required />
-        <input 
-          type="time" 
+          required
+        />
+        <input
+          type="time"
           name="horaInicio"
           className={style.input}
-          onChange={evento => setHoraInicio(evento.target.value)} 
+          onChange={handleFormChange}
           value={horaInicio}
-          required />
+          required
+        />
       </div>
 
       <label>Data de término</label>
       <div className={style.inputContainer}>
-        <input 
-          type="date" 
+        <input
+          type="date"
           name="dataFim"
           className={style.input}
-          onChange={evento => setDataFim(evento.target.value)} 
+          onChange={handleFormChange}
           value={dataFim}
-          required />
-        <input 
-          type="time" 
+          required
+        />
+        <input
+          type="time"
           name="horaFim"
           className={style.input}
-          onChange={evento => setHoraFim(evento.target.value)} 
+          onChange={handleFormChange}
           value={horaFim}
-          required />
+          required
+        />
       </div>
 
-    <button className={style.botao}>
-      Salvar
-    </button>
+      <button className={style.botao}>Salvar</button>
+    </form>
+  );
+};
 
-  </form>)
-}
-
-export default Formulario
+export default Formulario;

@@ -1,36 +1,55 @@
-
-import React from 'react'
-import { IEvento } from '../../interfaces/IEvento';
-import style from './Calendario.module.scss';
-import ptBR from './localizacao/ptBR.json'
-import Kalend, { CalendarView } from 'kalend'
-import 'kalend/dist/styles/index.css';
+import React from "react";
+import { IEvento } from "../../interfaces/IEvento";
+import style from "./Calendario.module.scss";
+import ptBR from "./localizacao/ptBR.json";
+import Kalend, { CalendarView } from "kalend";
+import { useSetRecoilState } from "recoil";
+import { eventosState } from "../../state/atom";
+import "kalend/dist/styles/index.css";
 
 interface IKalendEvento {
-  id?: number
-  startAt: string
-  endAt: string
-  summary: string
-  color: string
+  id?: number;
+  startAt: string;
+  endAt: string;
+  summary: string;
+  color: string;
 }
 
 const Calendario: React.FC<{ eventos: IEvento[] }> = ({ eventos }) => {
-
+  const setEventos = useSetRecoilState(eventosState);
   const eventosKalend = new Map<string, IKalendEvento[]>();
 
-  eventos.forEach(evento => {
-    const chave = evento.inicio.toISOString().slice(0, 10)
+  const handleEventDrag = (newevent) => {
+    setEventos((eventosAntigos) => {
+      const novosEventos = eventosAntigos.map((evento) => {
+        if (evento.id === newevent.id) {
+          return {
+            ...evento,
+            inicio: new Date(newevent.startAt),
+            fim: new Date(newevent.endAt),
+          };
+        }
+
+        return evento;
+      });
+
+      return novosEventos;
+    });
+  };
+
+  eventos.forEach((evento) => {
+    const chave = evento.inicio.toISOString().slice(0, 10);
     if (!eventosKalend.has(chave)) {
-      eventosKalend.set(chave, [])
+      eventosKalend.set(chave, []);
     }
     eventosKalend.get(chave)?.push({
       id: evento.id,
       startAt: evento.inicio.toISOString(),
       endAt: evento.fim.toISOString(),
       summary: evento.descricao,
-      color: 'blue'
-    })
-  })
+      color: "blue",
+    });
+  });
   return (
     <div className={style.Container}>
       <Kalend
@@ -38,14 +57,15 @@ const Calendario: React.FC<{ eventos: IEvento[] }> = ({ eventos }) => {
         initialDate={new Date().toISOString()}
         hourHeight={60}
         initialView={CalendarView.WEEK}
-        timeFormat={'24'}
-        weekDayStart={'Monday'}
-        calendarIDsHidden={['work']}
-        language={'customLanguage'}
+        timeFormat={"24"}
+        weekDayStart={"Monday"}
+        calendarIDsHidden={["work"]}
+        language={"customLanguage"}
         customLanguage={ptBR}
+        onEventDragFinish={handleEventDrag}
       />
     </div>
   );
-}
+};
 
-export default Calendario
+export default Calendario;
