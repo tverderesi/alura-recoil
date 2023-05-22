@@ -1,0 +1,24 @@
+{
+  "eventos": [
+    {
+      "id": 1,
+      "title": "Estudar React",
+      "completo": false
+    },
+    {
+      "id": 2,
+      "title": "Estudar Recoil",
+      "completo": true
+    },
+    {
+      "id": 3,
+      "title": "Estudar TypeScript",
+      "completo": false
+    },
+    {
+      "id": 4,
+      "title": "Estudar padrões de projeto",
+      "completo": true
+    }
+  ]
+}
