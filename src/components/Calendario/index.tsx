@@ -6,6 +6,7 @@ import Kalend, { CalendarView } from "kalend";
 import { useSetRecoilState } from "recoil";
 import { eventosState } from "../../state/atom";
 import "kalend/dist/styles/index.css";
+import { useEventList } from "../../hooks/useEventList";
 
 interface IKalendEvento {
   id?: number;
@@ -15,7 +16,8 @@ interface IKalendEvento {
   color: string;
 }
 
-const Calendario: React.FC<{ eventos: IEvento[] }> = ({ eventos }) => {
+const Calendario: React.FC = () => {
+  const eventos = useEventList();
   const setEventos = useSetRecoilState(eventosState);
   const eventosKalend = new Map<string, IKalendEvento[]>();
 

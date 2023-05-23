@@ -1,6 +1,7 @@
 import { atom } from "recoil";
 import { IEvento } from "../interfaces/IEvento";
 import { eventosAsync } from "./selector";
+import { IFiltro } from "../interfaces/IFiltro";
 
 export const eventoState = atom<IEvento | undefined>({
   key: "eventoState",
@@ -12,7 +13,7 @@ export const eventosState = atom({
   default: eventosAsync,
 });
 
-export const filtroState = atom<Date | null>({
+export const filtroState = atom<IFiltro>({
   key: "filtroState",
-  default: null,
+  default: {},
 });

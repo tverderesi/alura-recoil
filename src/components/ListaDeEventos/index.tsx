@@ -1,24 +1,17 @@
-import { IEvento } from "../../interfaces/IEvento";
 import Evento from "../Evento";
 import Filtro from "../Filtro";
 import style from "./ListaDeEventos.module.scss";
+import { useEventList } from "../../hooks/useEventList";
 
-const ListaDeEventos: React.FC<{
-  eventos: IEvento[];
-  aoAlterarStatus: (id: number) => void;
+const ListaDeEventos: React.FC = () => {
+  const eventos = useEventList();
 
-  aoFiltroAplicado: (data: Date | null) => void;
-}> = ({ eventos, aoAlterarStatus, aoFiltroAplicado }) => {
   return (
     <section>
-      <Filtro aoFiltroAplicado={aoFiltroAplicado} />
+      <Filtro />
       <div className={style.Scroll}>
         {eventos.map((evento) => (
-          <Evento
-            aoAlterarStatus={aoAlterarStatus}
-            evento={evento}
-            key={evento.id}
-          />
+          <Evento evento={evento} key={evento.id} />
         ))}
       </div>
     </section>

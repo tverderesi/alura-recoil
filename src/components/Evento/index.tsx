@@ -3,11 +3,12 @@ import { IEvento } from "../../interfaces/IEvento";
 import style from "./Evento.module.scss";
 import EventoCheckbox from "./EventoCheckbox";
 import useDeleteEvento from "../../hooks/useDeleteEvento";
+import { useEventList } from "../../hooks/useEventList";
 
 const Evento: React.FC<{
   evento: IEvento;
-  aoAlterarStatus: (id: number) => void;
-}> = ({ evento, aoAlterarStatus }) => {
+}> = ({ evento }) => {
+  const eventos = useEventList;
   const estilos = [style.Evento];
 
   const deleteEvento = useDeleteEvento();

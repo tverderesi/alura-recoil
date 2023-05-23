@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Alura Recoil Refactoring Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is part of Week 23 of [Boticário's Desenvolve program](https://desenvolve.grupoboticario.com.br/) and focuses on refactoring an existing application using Recoil, a state management library for React. The goal is to improve the maintainability and scalability of the application by adopting Recoil's predictable state management approach.
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+The project involves refactoring an application that manages events. The initial implementation used traditional React state management techniques, but it was decided to adopt Recoil to leverage its benefits such as centralized state management, easy composition of stateful components, and efficient re-rendering.
 
-### `npm start`
+The refactoring process involved the following steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **Dependency Setup**: Install Recoil and related dependencies to enable state management in the project.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. **Identifying State**: Analyze the existing codebase to identify the application's state requirements and determine which components rely on that state.
 
-### `npm test`
+3. **State Atomization**: Introduce Recoil atoms to represent individual pieces of application state. This allows components to subscribe to and modify specific portions of the state.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Selector Definition**: Create Recoil selectors to derive computed values or filter the application state based on specific criteria.
 
-### `npm run build`
+5. **Component Refactoring**: Update the existing components to use Recoil hooks (`useRecoilValue`, `useSetRecoilState`, etc.) to access and update the application state.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. **Testing and Validation**: Test the refactored components and validate that the application behaves as expected with the new Recoil state management.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get a local copy of the project up and running, follow these steps:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone the repository: `git clone https://github.com/<your-username>/<your-repo-name>.git`
+2. Navigate to the project directory: `cd <your-repo-name>`
+3. Install the dependencies: `npm install`
+4. Start the development server: `npm start`
+5. upload your project to github
+6. Create a .env file why the value REACT_APP_JSON_SERVER
+7. the url can be create using this [tutorial](https://my-json-server.typicode.com/)
+8. Open the application in your browser: `http://localhost:3000`
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To learn more about Recoil and its usage, refer to the official Recoil documentation:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Recoil Documentation](https://recoiljs.org/)
+
+## Credits
+
+This project is a collaboration between Alura and the Boticários Desenvolve program. It demonstrates the practical application of Recoil in a real-world scenario and highlights the benefits of using Recoil for state management in React applications.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
