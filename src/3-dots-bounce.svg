@@ -30,7 +30,7 @@
             }
         }
     </style>
-    <circle class="spinner_qM83" cx="4" cy="12" r="3" fill="currentColor" />
-    <circle class="spinner_qM83 spinner_oXPr" cx="12" cy="12" r="3" fill="currentColor" />
-    <circle class="spinner_qM83 spinner_ZTLf" cx="20" cy="12" r="3" fill="currentColor" />
+    <circle class="spinner_qM83" cx="4" cy="12" r="3" fill="white" />
+    <circle class="spinner_qM83 spinner_oXPr" cx="12" cy="12" r="3" fill="white" />
+    <circle class="spinner_qM83 spinner_ZTLf" cx="20" cy="12" r="3" fill="white" />
 </svg>
