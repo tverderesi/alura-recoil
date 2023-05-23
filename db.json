@@ -1,24 +1,25 @@
 {
   "eventos": [
     {
-      "id": 1,
-      "title": "Estudar React",
-      "completo": false
+      "descricao": "Estudar React",
+      "inicio": "2023-05-24T09:00",
+      "fim": "2023-05-25T13:00",
+      "completo": false,
+      "id": 1642342747
     },
     {
-      "id": 2,
-      "title": "Estudar Recoil",
-      "completo": true
+      "descricao": "Estudar Recoil",
+      "inicio": "2023-05-22T09:00",
+      "fim": "2023-05-24T11:00",
+      "completo": false,
+      "id": 1642342959
     },
     {
-      "id": 3,
-      "title": "Estudar TypeScript",
-      "completo": false
-    },
-    {
-      "id": 4,
-      "title": "Estudar padrões de projeto",
-      "completo": true
+      "descricao": "Meeting with Team",
+      "inicio": "2023-05-23T14:00",
+      "fim": "2023-05-25T16:00",
+      "completo": false,
+      "id": 1642343198
     }
   ]
 }
