@@ -1,11 +1,9 @@
-import React from "react";
 import style from "./App.module.scss";
 import Card from "./components/Card";
 import Formulario from "./components/Formulario";
 
 import Calendario from "./components/Calendario";
 import ListaDeEventos from "./components/ListaDeEventos";
-
 import { useEventList, useSetEventList } from "./hooks/useEventList";
 import { useFiltro, useSetFiltro } from "./hooks/useFilter";
 
@@ -14,7 +12,7 @@ function App() {
   const setEventos = useSetEventList();
   const filtro = useFiltro();
   const setFiltro = useSetFiltro();
-
+  console.log(eventos);
   const alterarStatusEvento = (id: number) => {
     setEventos((eventosAntigos) => {
       return eventosAntigos.map((evento) => {
@@ -45,6 +43,7 @@ function App() {
           <Formulario />
         </Card>
         <hr />
+
         <Card>
           <ListaDeEventos
             aoFiltroAplicado={aplicarFiltro}
